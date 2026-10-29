@@ -83,8 +83,6 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postBuild
   '';
 
-  # --disable-gpu-compositing is to work around upstream bug
-  # https://github.com/electron/electron/issues/32317
   installPhase = ''
     runHook preInstall
 
@@ -121,7 +119,6 @@ stdenv.mkDerivation (finalAttrs: {
           ]
         )
       }" \
-      --add-flags --disable-gpu-compositing \
       --add-flags $out/share/heroic/resources/app.asar \
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 
